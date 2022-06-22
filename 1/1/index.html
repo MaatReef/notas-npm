@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducción NPM</title>
+    <link rel="shortcut icon" type=image/jpg href="../../img/logo/favicon.ico"/>
+    <link href="https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <div class="context">
+        <a href="../0_Atajos/index.html">Volver</a>
+        <a href="../../index.html">Inicio</a>
+    <!--<a href="../2/index.html">Siguiente</a>-->
+    </div>
+    <div class="contenido" id="arriba">
+        <p>NPM - Notas</p>
+    </div>
+
+    <h1>1 - Gestión de Dependencias y Paquetes con NPM</h1>
+    <ul>
+        <li>
+            <a href="#1">01. Acerca de NPM, paquetes y módulos</a>
+        </li>
+        <li>
+            <a href="#2">02. Windows</a>
+        </li>
+        <li>
+            <a href="#3">03. Iniciar un proyecto</a>
+        </li>
+        <li>
+            <a href="#4">04. Instalación de dependencias</a>
+        </li>
+        <li>
+            <a href="#5">05. Instalación de dependencias con force</a>
+        </li>
+        <li>
+            <a href="#6">06. Actualizar y eliminar paquetes</a>
+        </li>
+        <li>
+            <a href="#7">07. Package lock y el uso los símbolos ^ y ~</a>
+        </li>
+        <li>
+            <a href="#8">08. Ejecutar tareas</a>
+        </li>
+        <li>
+            <a href="#9">09. Solución de problemas</a>
+        </li>
+        <li>
+            <a href="#10">10. Seguridad</a>
+        </li>
+        <li>
+            <a href="#11">11. Crear un paquete para NPM</a>
+        </li>
+        <li>
+            <a href="#12">12. Publicar un paquete en NPM</a>
+        </li>
+        <li>
+            <a href="#13">13. Paquetes privados</a>
+        </li>
+        <li>
+            <a href="#14">14. Cierre del curso</a>
+        </li>
+    </ul>
+
+    <p id="1">1. Acerca de NPM, paquetes y módulos</p>
+    <pre>
+        --------------------------------------------------------
+        Gestión de Dependencias y Paquetes..	-> NPM 	-> De Js, con gran cantidad de Recursos para implementar en nuestros Proyectos.
+
+        Permite poder Crear nuestros propios paquetes también.
+
+        --------------------------------------------------------
+                ~ Node Package Manager ~
+            -> npmjs.com	-> Página Oficial		-> Encontramos React
+
+        Leer la información de cada dependencia.. Así veremos posibles errores al analizar el sitio.    
+        --------------------------------------------------------
+    </pre>
+    <br> 
+    <br> 
+    <div class="context">
+        <a href="#arriba">Arriba</a>
+    </div>
+
+    <p id="2">2. Windows</p>
+    <pre>
+        --------------------------------------------------------
+        Vamos al sitio de nodejs.org	-> Descargamos 
+        
+            -  Lts				-> Tiene mayor soporte pero es una versión más antigua.
+            -  13.1.0 Current		-> Incorpora los últimos Features.
+        
+        --------------------------------------------------------
+        
+            - Al instalar.. Comproobar desde la Consola.
+            
+                -> node -v		-> Comprobamos la versión	
+                -> npm -v		-> Vemos la versión
+        
+                -> npm install -g npm@latest		-> Para ver actualizciones.
+        
+        *Node es el enviroment, permite trabajar con javascript del lado de las máquinas y servidores*
+        *Npm permite trabajar con los paquetes que podamos crear*
+        --------------------------------------------------------
+    </pre>
+    <br> 
+    <br> 
+    <div class="context">
+        <a href="#arriba">Arriba</a>
+    </div>
+
+    <p id="3">3. Iniciar un proyecto</p>
+    <pre>
+        --------------------------------------------------------
+        Es importante iniciar un proyecto cada vez que se inice una app web.. O un desarrollo de Software.
+        Este puntapie de configuración, dará forma al entorno en el cual desarrollaremos para luego recordarlo o compartirlo.
+        
+        Desde terminal..
+        --------------------------------------------------------
+            -> mkdir jsnpm
+            -> cd jsnpm
+            
+            -> git init			-> Iniciamos con git
+        
+            -> npm init			-> creamos el archivo package.json
+                            - Documentación Inicial
+            -> (nombre)				-> y 
+            -> (version) 				-> y 
+            -> (description) 			-> construir un paquete para node 
+            -> (entry point, el punto de inicio) 	->src/index.js	
+            -> (test command)			->
+            -> (git repository)			->
+            -> (keywords) 				-> javascript, node, paquete 
+            -> (author)				-> Maat Reef maatreef@gmail.com
+            -> (license)    			-> MIT
+        
+        Vemos entonces un archivo previo.. Si o no.		-> Para luego poder compartirlo.
+                - Documento recurso informativo.
+                - *Archivo JSON*
+        
+        --------------------------------------------------------
+        Otra manera..
+            -> npm init -yes		-> npm init -y		Más rápido.
+        
+        --------------------------------------------------------
+        O bien.. Con una configuración estandard que se llena luego
+            -> npm set init.author.email "maatreef33@gmail.com"
+            -> npm set init.author.name "Maat Reef"
+            -> npm set init.license "MIT"
+        
+            -> npm init -y				-> Establece la configuración por defecto.
+        --------------------------------------------------------
+    </pre>
+    <br> 
+    <div class="context">
+        <a href="#arriba">Arriba</a>
+    </div>
+
+    <p id="4">4. Instalación de dependencias</p>
+    <pre>
+        --------------------------------------------------------
+        Para instalar paquetes..
+        --------------------------------------------------------
+        Dentro de la carpeta donde desarrollamos..
+            -> mkdir src
+            -> cd src
+        
+            -> touch index.js		-> Desde donde se van a consumir los recursos instalados.
+        
+            -> cd ..		-> Volvemos a la raíz.
+        
+        Desde la raíz instalamos las dependencias..
+                        - moment 	librería para manejar el tiempo.
+                        - --save 	documento necesario para vivir en producción.
+                        - --save-dev	-dev indicamos que solo es necesario en nuestro entorno local de desarrollo, no producción.
+            -> npm install moment --save
+        
+        Corremos la instalación.. En el proyecto encontraremos la carpeta node_modules y el archivo package-lock.json
+                        - En la carpeta node_modules se instalan los modulos que se agregan al proyecto.
+                        - No debe ser enviada.
+        Creamos el archivo .gitignore					
+            node_modules/		-> Ignoramos el archivo correspondiente, para evitar enviarlo al repo o a producción.
+        
+        
+        Ahora en el archivo package.json
+                        -> Tendremos ya la dependencia asignada.
+                        -  Moment	
+        
+        --------------------------------------------------------
+        Ahora agregamos desde consola una dependencia como desarrollo.. date-fns
+            -> npm install date-fns --save-dev
+        
+        Ahora en el archivo package.json
+                        -> Tendremos especificada la dependencia de desarrollo por separado.
+        
+        *Más abreviado* 
+            -> npm i date-fns -D		->Instalamos esa dependencia como desarrollo
+        
+            -> npm i date-fns -S		-> Para producción.
+        
+        --------------------------------------------------------
+        
+        *Para instalar de manera global con -g*		-> nodemon escuchará cualquier tipo de cambio de manera global.
+        
+            -> npm install -g nodemon		-> Instalar con permisos de administrador.
+        
+            -> npm list -g --depth 0		-> Para ver las dependencias instaladas de manera global.
+        
+        --------------------------------------------------------
+        
+        *Para instalar opcionales*
+        
+            -> npm install eslint -O		-> -O mayúscula, paquete de manera opcional..
+        
+            -> npm fund				-> Marca el financiamiento para el desarrolador..
+                                - Crear recursos para que sean apoyados por la comunidad.
+        --------------------------------------------------------
+    </pre>
+    <br> 
+    <div class="context">
+        <a href="#arriba">Arriba</a>
+    </div>
+
+    <p id="5">5. Instalación de dependencias con force</p>
+    <pre>
+        --------------------------------------------------------
+        *Para no instalar una dependencia en el proyecto pero si ver el output*
+        
+            -> npm install react --dry-run			-> SIMULA que se instala
+                                    -  Da el output y luego decidimos si queremos o no, instalarlo.
+        
+        --------------------------------------------------------
+        
+        - force
+        *Para instalar una dependencia desde el ultimo recurso desde el servidor de Npm*	 
+                        -> Instalamos la última versión desde el servidor de NPM.
+        
+            -> npm install webpack -f			-> -force	 
+                                - Podemos editar el package.json de manera manual si es necesario..
+                                - Ya que puede instalarse en un lugar donde no lo deseamos, al no colocar el flag.
+        
+        --------------------------------------------------------
+        
+        *Si tenemos algún error y debemos subsanarlo luego de modificar el package.json*
+        
+            -> npm install				-> Revisamos el packge.json y volvemos a instalar todas las dependencias nuevamente.
+         
+        --------------------------------------------------------
+        
+        *También se puede instalar conociendo una versión particular de una dependencia*
+        
+            -> npm install json-server@0.15.0		-> Versión específica de json-server
+                                -> Y ahora en el package deberíamos tener la versión especificada "json-server":"^0.15.0",
+        --------------------------------------------------------        
+    </pre>
+    <br> 
+
+    <div class="context">
+        <a href="#arriba">Arriba</a>
+    </div>
+    <br>
+
+    <p id="6">6. Actualizar y eliminar paquetes</p>
+    <pre>
+        -------------------------------------------------------
+        *Para ver los paquetes*
+        
+            -> npm list			-> Vemos los paquetes instalados
+        
+        
+        *Para actualizar los paquetes*
+        
+            -> npm outdate			-> Vemos los paquetes desactualizados, la instalada y la que tendremos actualizar.
+        
+            -> npm outdate --d		-> Vemos el output, el fetch y como se consulta la información.
+        
+                        -> El --d para ver el output más detallado.
+        
+        
+            -> npm update			-> Hacemos una actualización, de los paquetes..
+        
+        
+        *Para actualizar un paquete en particular*
+        
+            -> npm install json-server@latest		-> Aputamos a la dependencia en particular.
+                                    - Vemos en el package.json		-> La versión actualizada.
+                                    
+        
+        --------------------------------------------------------
+        
+        *Desinstalar paquetes*
+        
+            -> npm uninstall json-server			-> Eliminamos lo instalado en node_modules  y de los paquetes 
+        
+        --------------------------------------------------------
+        
+        * Desinstalar paquete del node_modules, sin eliminarlo del package.json *	
+        
+            -> npm uninstall webpack --no-save	  	-> Lo mantenemos en package.json 
+        
+        --------------------------------------------------------
+        
+        Paquete para visual studio Code
+        
+                -> Node npm		-> npm egamma		-> Analiza el package.json y lo compara con el node_modules..
+                                        -  Y avisa si un paquete no está instalado, o algún cambio en particular.
+        --------------------------------------------------------            
+    </pre>
+    <br> 
+    
+    <div class="context">
+        <a href="#arriba">Arriba</a>
+    </div>
+    <br>
+
+    <p id="7">7. Package lock y el uso los símbolos ^ y ~   </p>
+    <pre>
+        --------------------------------------------------------
+        Considerar la importancia del versionado semántico y la importancia del archivo package.log
+        
+        --------------------------------------------------------
+        
+        * Descargamos un repositorio de git para hacer la prueba*
+        
+            -> git clone https://github.com/gndx/react-base.git && cd react-base		-> Clonamos y entramos al repositorio.
+        
+            -> code .
+                        -> Vemos el proyecto desde el editor.
+                        - Entramos al package.json y vemos las depencias...
+        
+        Forma de Manejar el Versionado:
+                        -> 3: El primer numero es el cambio mayor
+                        -> 9: Vemos los cambios menores, agregan funcionalidades pero no expresan que es una versión nueva
+                        -> 2: patches o cambios menores que se hayan realizado, arreglo de bugs.. Etc.	
+        
+                                -> El 9 y el 2 indica el caret, si lo mantenemos en el package marcará la referencia.
+        
+                        - Por lo cual podemos aclarar que nos queremos quedar o no en una determinada versión.
+                            -> "json-server":"^0.15.0",
+                            -> "json-server":"0.15.0",		-> Si le quitamos el ^, garantizamos que se quede en la misma versión.
+                - 3.9.2
+        
+        *Además a partir de la versión .5 de npm tendremos el archivo package-lock.json*
+                -> Nos permite Ver la configuración de como se construirá nuestro proyecto.
+                -  Versiones y dependencias.. Claramente Especificadas.
+                -  De esta manera tendremos un mejor versionado, de lo que está sucediendo.. Y compartir el archivo en cuestión.
+                -  Garantizando el funcionamiento de la app, incluso en integración continua.	         
+        --------------------------------------------------------        
+    </pre>
+    <br> 
+    
+    <div class="context">
+        <a href="#arriba">Arriba</a>
+    </div>
+    <br>
+
+    <p id="8">8. Ejecutar tareas</p>
+    <pre>
+        --------------------------------------------------------
+        Los scripts son comandos que podemos ejecutar desde la Consola..
+            -> Dandole una serie de Salidas.
+        
+        Ejemplo:
+        
+        "scripts": {
+            "build" : "webpack --mode production",				-> Para llevar a producción el proyecto.
+            "start" : "webpack-dev-server --open --mode development",	-> Para generar un entorno de desarrollo local con webpack
+            "format" : "prettier --write '{*.js,src/**/*.{js,jsx}}'",	-> Formato con pretierr
+            "lint": "eslint src/ --fix",					-> Con slint para repasar el proyecto
+            "hola": "node",
+            "deploy": "npm run format && npm run build",
+        },
+                            -> Agregamos dos comandos deploy y hola.
+        
+        Ahora desde Consola..
+        
+            -> npm run hola			-> Habilita node
+        
+            -> npm run deploy		-> Ejecuta el format y el build del proyecto
+        
+        
+        *Por defecto*
+            -> npm test
+        
+            -> npm start			-> Inicializa el proyecto.
+        --------------------------------------------------------        
+    </pre>
+    <br> 
+    
+    <div class="context">
+        <a href="#arriba">Arriba</a>
+    </div>
+    <br>
+
+    <p id="9">9. Solución de problemas</p>
+    <pre>
+        --------------------------------------------------------
+            -> Modo Verbose <-    --dd
+
+        *Para detectar posibles errores*		-> Debuggear, encontamos el error..
+
+            -> npm run build  --dd			-> Si aparece un error lo podremos ver
+
+            -> code " ruta de log "			-> Para verlo desde Visual studio Code.
+
+        --------------------------------------------------------
+
+        *Eliminar el caché*
+            
+            -> npm cache clean --force		-> Limpiamos
+
+            -> npm cache verify			-> Verificamos
+
+        --------------------------------------------------------
+
+        *Eliminamos la carpeta node_modules*
+
+            -> ls					-> Listamos los archivos	
+            -> rm -rf node_modules/			-> Desde bash apuntamos a la carpeta node_modules
+
+            -> npm install				-> Volvemos a instalar las dependencias necesarias.
+
+        --------------------------------------------------------
+
+        *Comando para eliminar la carpeta node_modules*
+
+            -> npm install -g rimraf		-> Instalamos el paquete de manera global.
+
+            -> ls
+            -> rimraf node_modules			-> Garantizamos que borramos la carpeta en cuestión.
+                                - Volvemos a instalar de manera segura.              
+        --------------------------------------------------------
+    </pre>
+    <br> 
+    
+    <div class="context">
+        <a href="#arriba">Arriba</a>
+    </div>
+    <br>
+
+    <p id="10">10. Seguridad</p>
+    <pre>
+        --------------------------------------------------------
+        Evitar software malicioso.. Analizar el contenido.
+        --------------------------------------------------------
+        
+        *Podemos usar npm*
+        
+            -> npm install			-> Instalamos los paquetes.
+        
+            -> npm audit			-> Cambios de paquetes que pueden afectar en cuestiones de seguridad. 
+        
+            -> npm audit --json		-> Generamos un documento en json de manera más detallada.
+        
+            -> npm update eslint-utils --depth 2	-> Actualizamos el paquete en cuestión.
+        
+            -> npm audit fix		-> Arreglamos los detalles, actualizamos con las dependicas.
+            
+            -> npm audit			-> Verificamos nuevamente que no hallan vulnerabilidades.
+        
+        --------------------------------------------------------
+            -> 	snyk.io			- Ayuda a mantenernos seguro en cuanto a desarrollo.. Estar al Día.
+        --------------------------------------------------------        
+    </pre>
+    <br> 
+    
+    <div class="context">
+        <a href="#arriba">Arriba</a>
+    </div>
+    <br>
+
+    <p id="11">11. Crear un paquete para NPM</p>
+    <pre>
+        --------------------------------------------------------
+        Crearlo, publicarlo y compartirlo..
+        El proyecto es un random de mensajes.
+        --------------------------------------------------------
+        
+            -> pwd				-> Ruta deseada
+            -> mkdir random-messages
+        
+            -> cd random-messages
+        
+            -> git init			-> Repositorio local
+            
+            -> npm init			-> Establecemos la configuración
+                    - (random-messages)
+                    - (1.0.0)
+                    - random de mensajes
+                    - src/index.js
+                    - 
+                    - 
+                    - 	
+                    - javascript, node, npm
+                    - ("MIT")
+        
+            -> code .
+        
+        
+        --------------------------------------------------------
+        Dentro de la carpeta creamos la carpeta src.. index.js
+                                    -> Donde vivirá el proyecto.. Como crear el random de mensajes
+                                    -  Como añadir al configuración del package y como publicarlo
+        
+            - En index.js
+        
+        const messages = [			-> Lista de Strings.
+            "oscar", 
+            "Ana",
+            "Nicolay",
+            "Yesica",
+            "Diego",
+            "Laura"
+        ];
+        
+        const randomMsg = () => {
+            const message = messages[Math.floor(Math.floor() * messages.length)];
+            console.log(message);
+        };
+        
+        
+        module.exports = { randomMsg };
+        
+        
+        --------------------------------------------------------
+        Ahora debemos crear una carpeta dentro del documento.. La cual se llama bin		-> Para instalarlo de manera global.
+            -> Dentro de la carpeta bin, creamos un archivo..
+                - global.js	-> Lo armamos
+        
+        #!/usr/bin/env node		-> Lo armamos para bash
+        
+        let random = require('../src/index.js');
+        
+        random.randomMsg();				  
+        
+        
+        *ASí podremos ejecutar este comando desde la terminal*
+        --------------------------------------------------------
+        Ahora vamos al package.json..
+        
+            "license":"MIT",
+            "bin": {					-> Creamos el apartado para la función que acabamos de crear.
+                "random-msg"= "./bin/global.js"
+            },
+            
+            "preferGlobal": true,				-> Para ejecutarlo como bin global.. Y instalarlo de manera global.
+        }
+        --------------------------------------------------------        
+    </pre>
+    <br> 
+    
+    <div class="context">
+        <a href="#arriba">Arriba</a>
+    </div>
+    <br>
+    <p id="12">12. Publicar un paquete en NPM</p>
+    <pre>
+        --------------------------------------------------------
+        Primero antes de publicarlo lo probamos de manera local..
+            Con npm, podemos generar un link para utilizarlo en otros proyectos internos o instalarlo de manera global, para utilizarlo.
+        
+        Estando dentro de la carpeta donde creamos el paquete..	random-messages
+        
+            -> npm link			-> Con permisos de administador, 
+                            - Hacemos una referencia con link a ese paquete.. Hacia lo que pueda instalar de manera global.
+                            - Como si lo hubieramos traído del servidor de npm.
+                            - Lo añadimos a la configuración del equipo..
+        
+            -> random-msg			- Una vez linkeado lo podemos llamar con el nombre que le pusimos..
+                            - De esta manera ya lo tenemos funcionando de manera global en el sistema.
+        
+        --------------------------------------------------------
+        
+        *Para instalarlo desde el Path que tenemos*	-> Es otra manera.
+        
+            -> pwd		-> El path
+        
+        1ª debemos hacer la actualización.. Si agregamos cambios al paquete.
+        
+            -> npm install -g " + la ruta que obtenemos con el pwd"		-> Instalamos el paquete actualizando los cambios.
+        
+            -> random-msg							-> Ya veremos los cambios.
+        
+        --------------------------------------------------------
+        
+        *Para poderlo publicarlo debemos tener un usuario en npm*	
+                    - Nos registramos.. Nombre, correo, contraseña.. 
+                    - Luego iniciamos sesión
+                    - Podrems ver todos los paquetes que tenemos.. 
+        
+        *Ahora debemos loguearnos de la terminal para poder publicar los paquetes*
+        
+            -> npm adduser
+                - Username 	-> maatreed
+                - pass	
+                - email		Logueado publicamos el paquete..
+        
+            -> npm publish 		-> Con publish leemos la configuración del package.json.
+        
+                - Generamos entonces la versión 1.0.0
+                - Lo verificamos en el sitio web de npm		-> Package.. random-messages
+                                        -  Establecer un readme.
+        --------------------------------------------------------        
+    </pre>
+    <br> 
+    
+    <div class="context">
+        <a href="#arriba">Arriba</a>
+    </div>
+    <br>
+
+    <p id="13">13. Paquetes privados</p>
+    <pre>
+        --------------------------------------------------------
+        -> Estandards para publicarlo..
+        
+        --------------------------------------------------------
+            README.md		-> Hacerlo de manera bien detallada..
+                        -  Conectarlo además a un repositorio.. Github.
+        
+        # random-messages
+        
+        Whenever I start a new project, Idont konw waht to write for the first commit. After doing a "git init" there is technically nothing there...
+        
+        ## install
+        
+        ```npm
+        npm install -g random-msg
+        ```
+        
+        
+        # Usage
+        
+        ```bash
+        random-msg
+        ```
+        
+        # Contributing
+        If someone wants to addd or improve something. I invite you to collaborate directly in this repository: (random-msg)(https://github.com/platzi/npm-random-msg)
+        
+        
+        # License
+        random-msg is released under the (MIT LIcense) https://opensource.org/licenses/MIT
+        
+        
+            -> Adaptarlo el proyecto.. Todos los readmes para estos proyectos deben estar en ingles.
+                - El esqueleto es similar. 
+        
+        
+        --------------------------------------------------------
+        
+        Debemos conectarlo con el repositorio
+            -> git remote add origin https://github.com/platzi/npm-random-msg.git
+        
+            -> git int
+        
+            -> npm init			-> Armamos el package.json, actualizado
+        
+        
+        *Establecemos la versión o cambios que realizamos, mayor, menor o un parche al paquete*
+        
+            -> npm version patch 		-> patch es parche	-						       - Patch	
+                            -> minor es menor	- Esto en función de los cambios que hayamos realizado ^1.0.1 
+                            -> major es mayor	-
+        
+            -> install -g npm		-> Actualizamos los paquetes.
+        
+            -> npm -v			-> Vemos la versión.
+        
+            -> npm publish 			-> Publicamos el paquete con esa versión..
+        
+                - Ahora veremos el paquete en npm
+                - En EMPRESAS podemos crear repositorios privados, dentro del entorno de desarrolladores.                   
+        --------------------------------------------------------        
+    </pre>
+    <br> 
+    
+    <div class="context">
+        <a href="#arriba">Arriba</a>
+    </div>
+    <br>
+
+    <p id="14">14. Cierre del curso</p>
+    <pre>
+        --------------------------------------------------------
+        Lo que se Desarrollo:
+            - Instalar npm
+            - Instalar paquetes y dependencias en los proyectos
+            - Actualizarlas y auditar los proyectos para encontrar vulnerabilidades
+            - Publicar un paquete en npm	
+                        -> Backend con Node.
+        --------------------------------------------------------        
+    </pre>
+    <br> 
+    
+    <div class="context">
+        <a href="#arriba">Arriba</a>
+    </div>
+    <br>
+
+    
+    <br> 
+    <br> 
+    <div class="context">
+        <a href="../0_Atajos/index.html">Volver</a>
+        <a href="../../index.html">Inicio</a>
+    <!--    <a href="../2/index.html">Siguiente</a>-->
+    </div>
+
+</body>
+</html>
